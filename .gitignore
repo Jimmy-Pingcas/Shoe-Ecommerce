@@ -1,0 +1,20 @@
+# dependencies
+node_modules
+
+# backend & frontend
+server/node_modules
+frontend/node_modules
+
+# env files
+server/.env
+frontend/.env
+
+# builds
+frontend/dist
+frontend/build
+
+# logs
+npm-debug.log*
+
+# OS
+.DS_Store
