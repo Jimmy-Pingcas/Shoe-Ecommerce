@@ -15,32 +15,32 @@ export default function Landing() {
             {/* Carousel component - file: components/carousel.tsx */}
             <div className="w-full flex flex-col items-center gap-8">
               
-			  {/* import ang component diri */}
-			  <h1 className="m-0 text-4xl md:text-5xl lg:text-6xl font-extrabold">Carousel (placeholder)</h1>
-			</div>
+              {/* import ang component diri */}
+              <h1 className="m-0 text-4xl md:text-5xl lg:text-6xl font-extrabold">Carousel (placeholder)</h1>
+            </div>
 
 
             {/* Sample product component - file: components/shoeCard.tsx */}
             <div className="w-full flex flex-col items-center gap-8">
 			  
-			  {/* import ang component diri */}
-			  <h1 className="m-0 text-4xl md:text-5xl lg:text-6xl font-extrabold">Sample products (placeholder)</h1>
+              {/* import ang component diri */}
+              <h1 className="m-0 text-4xl md:text-5xl lg:text-6xl font-extrabold">Sample products (placeholder)</h1>
             </div>
 
 
             {/* Brands available list component - file: components/brand.tsx */}
             <div className="w-full flex flex-col items-center gap-8">
               
-			  {/* import ang component diri */}
-			  <h1 className="m-0 text-4xl md:text-5xl lg:text-6xl font-extrabold">Brands available (placeholder)</h1>
+			        {/* import ang component diri */}
+			         <h1 className="m-0 text-4xl md:text-5xl lg:text-6xl font-extrabold">Brands available (placeholder)</h1>
             </div>
 
 
             {/* Site information component - file: components/informationContainer.tsx */}
             <div className="w-full flex flex-col items-center gap-8">
               
-			  {/* import ang component diri */}
-			  <h1 className="m-0 text-4xl md:text-5xl lg:text-6xl font-extrabold">Information (placeholder)</h1>
+			        {/* import ang component diri */}
+			        <h1 className="m-0 text-4xl md:text-5xl lg:text-6xl font-extrabold">Information (placeholder)</h1>
             </div>
 
 
