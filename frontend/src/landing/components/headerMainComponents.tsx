@@ -1,33 +1,47 @@
-import { User } from "lucide-react";
+import { User, Search, LogIn } from "lucide-react";
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 export default function HeaderMainComponents() {
 	return (
-		<header className="w-full border-b bg-white shadow-sm">
-			<div className="grid h-16 grid-cols-3 items-center px-6">
-				{/* Logo */}
-				<div>
-					<h1 className="text-2xl font-bold">LOG</h1>
+		<header className="w-full bg-white">
+			<div className="flex items-center h-16 px-4 justify-between">
+
+				{/* LOGO (LEFT) */}
+				<div className="shrink-0">
+					<img src={logo} alt="Logo" className="h-14 w-auto" />
 				</div>
 
-				{/* Search */}
-				<div className="flex justify-center">
-					<input
-						type="text"
-						placeholder="Search products..."
-						className="w-full max-w-md rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-black"
-					/>
-				</div>
+				{/* RIGHT SIDE */}
+				<div className="flex items-center gap-10">
 
-				{/* Right Side */}
-				<div className="flex items-center justify-end gap-4">
-					<button className="font-medium hover:text-gray-600">
+					{/* Search */}
+					<div className="flex items-center border border-gray-300 rounded-2xl px-3 py-2 focus-within:border-black">
+						<Search size={18} className="text-gray-500" />
+						<input
+							type="text"
+							placeholder="Search products..."
+							className="ml-2 outline-none w-80"
+						/>
+					</div>
+
+					{/* About Us */}
+					<Link
+						to="/about"
+						className="font-medium text-gray-800 hover:text-orange-500 transition-colors"
+					>
 						About Us
-					</button>
+					</Link>
 
-					<button className="rounded-full p-2 hover:bg-gray-100">
-						<User size={24} />
-					</button>
+					<Link
+						to="/about"
+						className="font-medium text-gray-800 hover:text-orange-500 transition-colors"
+					>
+						Login
+					</Link>
+
 				</div>
+
 			</div>
 		</header>
 	);
