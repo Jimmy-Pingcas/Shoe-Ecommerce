@@ -1,4 +1,4 @@
-import { User, Search, LogIn } from "lucide-react";
+import { Search} from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
@@ -8,16 +8,16 @@ export default function HeaderMainComponents() {
 			<div className="flex items-center h-16 px-4 justify-between">
 
 				{/* LOGO (LEFT) */}
-				<div className="shrink-0">
-					<img src={logo} alt="Logo" className="h-14 w-auto" />
-				</div>
+				<Link to="/" className="shrink-0">
+					<img src={logo} alt="Logo" className="h-14 w-auto cursor-pointer" />
+				</Link>
 
 				{/* RIGHT SIDE */}
 				<div className="flex items-center gap-10">
 
 					{/* Search */}
 					<div className="flex items-center border border-gray-300 rounded-2xl px-3 py-2 focus-within:border-black">
-						<Search size={18} className="text-gray-500" />
+						<Search size={18} className="text-gray-600" />
 						<input
 							type="text"
 							placeholder="Search products..."
