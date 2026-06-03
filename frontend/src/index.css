@@ -21,3 +21,13 @@ img { max-width: 100%; display: block; }
 
 /* Utility container */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+
+/* Hide scrollbar while maintaining scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
