@@ -4,7 +4,7 @@ import ShoeCard from "../components/shoeCard";
 import shoes from "../../aaSampleData/shoe.json";
 import Brand from "../components/brand";
 import InformationContainer from "../components/informationContainer";
-
+import Filter from "../components/filterButton"
 
 export default function Landing() {
   return (
@@ -17,7 +17,7 @@ export default function Landing() {
         </section>
 
         {/* Main content area */}
-        <section className="w-full bg-[#ebe1e1] flex items-start justify-center px-4 py-4 box-border">
+        <section className="w-full bg-white flex items-start justify-center px-4 py-4 box-border">
           <div className="w-full p-6 box-border flex flex-col gap-8 items-center">
             {/* Carousel component - file: components/carousel.tsx */}
             <div className="w-full flex flex-col items-center gap-8">
@@ -27,10 +27,18 @@ export default function Landing() {
             </div>
 
             <div className="w-full flex justify-center">
-              <div className="w-full max-w-6xl grid grid-cols-[repeat(auto-fit,_14rem)] justify-center gap-4">
-                {shoes.slice(0, 8).map((shoe) => (
-                  <ShoeCard key={shoe.id} shoe={shoe} />
-                ))}
+              <div className="w-full max-w-6xl flex flex-col gap-4">
+
+                {/* Filter on top */}
+                <Filter />
+
+                {/* Grid below */}
+                <div className="grid grid-cols-[repeat(auto-fit,_14rem)] justify-center gap-4">
+                  {shoes.slice(0, 8).map((shoe) => (
+                    <ShoeCard key={shoe.id} shoe={shoe} />
+                  ))}
+                </div>
+
               </div>
             </div>
 

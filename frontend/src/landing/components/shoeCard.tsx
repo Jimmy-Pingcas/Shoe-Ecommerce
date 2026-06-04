@@ -2,8 +2,7 @@ import type {Shoe} from "../types/shoe";
 
 export default function ShoeCard({ shoe }: { shoe: Shoe }) {
 	return (
-		<div className="group w-56 bg-white rounded-xl overflow-hidden shadow-md border border-transparent cursor-pointer transition-all duration-200 hover:border-orange-200 hover:shadow-[0_8px_25px_rgba(249,115,22,0.25)]">
-
+        <div className="group w-56 bg-gray-50 rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.20)] border  cursor-pointer transition-all duration-200 hover:border-orange-200 hover:shadow-[0_12px_35px_rgba(249,115,22,0.4),0_4px_10px_rgba(0,0,0,0.08)]">
 			{/* Image */}
 			<div className="bg-gray-100 h-40 p-3 overflow-hidden">
                 <img
