@@ -1,8 +1,10 @@
 import MainHeader from "../components/headerMainComponents";
 import Carousel from "../components/carousel";
 import ShoeCard from "../components/shoeCard";
+import shoes from "../../aaSampleData/shoe.json";
 import Brand from "../components/brand";
 import InformationContainer from "../components/informationContainer";
+
 
 export default function Landing() {
   return (
@@ -24,10 +26,12 @@ export default function Landing() {
               <h1 className="m-0 text-4xl md:text-5xl lg:text-6xl font-extrabold"></h1>
             </div>
 
-            {/* Sample product component - file: components/shoeCard.tsx */}
-            <div className="w-full flex flex-col items-center gap-8">
-              {/* import from components */}
-              <ShoeCard />
+            <div className="w-full flex justify-center">
+              <div className="w-full max-w-6xl grid grid-cols-[repeat(auto-fit,_14rem)] justify-center gap-4">
+                {shoes.slice(0, 8).map((shoe) => (
+                  <ShoeCard key={shoe.id} shoe={shoe} />
+                ))}
+              </div>
             </div>
 
             {/* Brands available list component - file: components/brand.tsx */}

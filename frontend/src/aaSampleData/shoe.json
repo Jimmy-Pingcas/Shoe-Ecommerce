@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "name": "Nike Air Max",
+    "category": "Running Shoes",
+    "price": 4999,
+    "oldPrice": 5999,
+    "rating": 4.8,
+    "image": "/assets/shoe/shoe1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Nike Zoom Fly",
+    "category": "Running Shoes",
+    "price": 4599,
+    "oldPrice": 5499,
+    "rating": 4.6,
+    "image": "/assets/shoe/shoe2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Adidas UltraBoost",
+    "category": "Running Shoes",
+    "price": 6999,
+    "oldPrice": 7999,
+    "rating": 4.9,
+    "image": "/assets/shoe/shoe3.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Women's Sport Flex",
+    "category": "Women's Shoes",
+    "price": 3999,
+    "oldPrice": 4999,
+    "rating": 4.5,
+    "image": "/assets/shoe/womenshoe1.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Women's Air Lite",
+    "category": "Women's Shoes",
+    "price": 4299,
+    "oldPrice": 5299,
+    "rating": 4.7,
+    "image": "/assets/shoe/womenshoe2.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Women's Runner Pro",
+    "category": "Women's Shoes",
+    "price": 3899,
+    "oldPrice": 4599,
+    "rating": 4.4,
+    "image": "/assets/shoe/womenshoe3.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Kids Fun Run",
+    "category": "Kids Shoes",
+    "price": 1999,
+    "oldPrice": 2499,
+    "rating": 4.6,
+    "image": "/assets/shoe/kidshoe1.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Kids Sport Star",
+    "category": "Kids Shoes",
+    "price": 1799,
+    "oldPrice": 2299,
+    "rating": 4.5,
+    "image": "/assets/shoe/kidshoe2.avif"
+  },
+  {
+    "id": 9,
+    "name": "Kids Light Run",
+    "category": "Kids Shoes",
+    "price": 1899,
+    "oldPrice": 2399,
+    "rating": 4.7,
+    "image": "/assets/shoe/kidshoe3.jpg"
+  }
+]
