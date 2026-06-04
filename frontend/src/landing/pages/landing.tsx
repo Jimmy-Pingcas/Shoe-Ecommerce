@@ -4,7 +4,7 @@ import ShoeCard from "../components/shoeCard";
 import shoes from "../../aaSampleData/shoe.json";
 import Brand from "../components/brand";
 import InformationContainer from "../components/informationContainer";
-import Filter from "../components/filterButton"
+import Filter from "../components/filterButton";
 
 export default function Landing() {
   return (
@@ -28,7 +28,6 @@ export default function Landing() {
 
             <div className="w-full flex justify-center">
               <div className="w-full max-w-6xl flex flex-col gap-4">
-
                 {/* Filter on top */}
                 <Filter />
 
@@ -38,7 +37,6 @@ export default function Landing() {
                     <ShoeCard key={shoe.id} shoe={shoe} />
                   ))}
                 </div>
-
               </div>
             </div>
 
