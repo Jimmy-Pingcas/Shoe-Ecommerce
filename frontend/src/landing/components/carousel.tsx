@@ -1,47 +1,32 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import shoes from "../../aaSampleData/shoe.json";
+import ProductModal from "./productDetailsModal";
 
 interface Slide {
   id: number;
   image: string;
-  subtitle: string;
   title: string;
+  subtitle: string;
   discount: string;
   cta: string;
 }
 
-// STATIC DATA (for now) - kept as fallback/default
-const staticSlides: Slide[] = [
-  {
-    id: 1,
-    image: "/images/carousel/shoes-1.jpg",
-    subtitle: "New Arrivals",
-    title: "Summer Collection 2026",
-    discount: "Up to 30% Off",
-    cta: "Shop Now",
-  },
-  {
-    id: 2,
-    image: "/images/carousel/shoes-2.jpg",
-    subtitle: "Limited Edition",
-    title: "Premium Running Shoes",
-    discount: "Special Offer",
-    cta: "Shop Now",
-  },
-  {
-    id: 3,
-    image: "/images/carousel/shoes-3.jpg",
-    subtitle: "Classic Style",
-    title: "Timeless Sneakers",
-    discount: "20% Off Selected Items",
-    cta: "Explore",
-  },
-];
-
-async function getSlides(): Promise<Slide[]> {
-  return staticSlides;
-}
+// Get featured products (first 3 from shoes data)
+const featuredSlides: Slide[] = shoes.slice(0, 3).map((shoe, index) => ({
+  id: shoe.id,
+  image: shoe.image,
+  title: shoe.name,
+  subtitle:
+    index === 0
+      ? "New Arrivals"
+      : index === 1
+        ? "Limited Edition"
+        : "Best Seller",
+  discount: `${Math.floor(Math.random() * 30) + 10}% Off`,
+  cta: "Shop Now",
+}));
 
 const NavButton = ({
   onClick,
@@ -101,22 +86,29 @@ const DotIndicator = ({
 const SlideContent = ({
   slide,
   isActive,
+  onCtaClick,
+  onImageClick,
 }: {
   slide: Slide;
   isActive: boolean;
+  onCtaClick: () => void;
+  onImageClick: () => void;
 }) => (
   <div
     className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
       isActive ? "opacity-100 z-10" : "opacity-0 z-0"
     }`}
   >
-    <img
-      src={slide.image}
-      alt={slide.title}
-      className="w-full h-full object-cover"
-    />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-    <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
+    {/* Clickable Image */}
+    <div onClick={onImageClick} className="w-full h-full cursor-pointer">
+      <img
+        src={slide.image}
+        alt={slide.title}
+        className="w-full h-full object-cover"
+      />
+    </div>
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" />
+    <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white pointer-events-none">
       <p className="text-sm sm:text-base md:text-lg tracking-wider mb-2 uppercase">
         {slide.subtitle}
       </p>
@@ -126,7 +118,10 @@ const SlideContent = ({
       <p className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 text-orange-400">
         {slide.discount}
       </p>
-      <button className="px-6 py-2 sm:px-8 sm:py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-all duration-200 shadow-md hover:shadow-lg">
+      <button
+        onClick={onCtaClick}
+        className="pointer-events-auto px-6 py-2 sm:px-8 sm:py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-all duration-200 shadow-md hover:shadow-lg"
+      >
         {slide.cta}
       </button>
     </div>
@@ -138,12 +133,12 @@ export default function Carousel() {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    getSlides().then((data) => {
-      setSlides(data);
-      setLoading(false);
-    });
+    setSlides(featuredSlides);
+    setLoading(false);
   }, []);
 
   const nextSlide = useCallback(() => {
@@ -155,6 +150,20 @@ export default function Carousel() {
   }, [slides.length]);
 
   const goToSlide = (index: number) => setCurrentSlide(index);
+
+  // Handle CTA click - open modal
+  const handleCtaClick = (slide: Slide) => {
+    const product = shoes.find((p) => p.id === slide.id);
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  // Handle image click - open modal
+  const handleImageClick = (slide: Slide) => {
+    const product = shoes.find((p) => p.id === slide.id);
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
 
   useEffect(() => {
     if (!isAutoPlaying || slides.length === 0) return;
@@ -179,33 +188,55 @@ export default function Carousel() {
     return null;
   }
 
+  // Find the full shoe object for the modal
+  const fullProduct = selectedProduct
+    ? shoes.find((p) => p.id === selectedProduct.id)
+    : null;
+
   return (
-    <div
-      className="relative w-full overflow-hidden rounded-xl border border-gray-200 shadow-[0_5px_15px_rgba(0,0,0,0.20)] transition-all duration-200 hover:shadow-[0_12px_35px_rgba(249,115,22,0.4),0_4px_10px_rgba(0,0,0,0.08)]"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px]">
-        {slides.map((slide, index) => (
-          <SlideContent
-            key={slide.id}
-            slide={slide}
-            isActive={index === currentSlide}
-          />
-        ))}
+    <>
+      <div
+        className="relative w-full overflow-hidden rounded-xl border border-gray-200 shadow-[0_5px_15px_rgba(0,0,0,0.20)] transition-all duration-200 hover:shadow-[0_12px_35px_rgba(249,115,22,0.4),0_4px_10px_rgba(0,0,0,0.08)]"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px]">
+          {slides.map((slide, index) => (
+            <SlideContent
+              key={slide.id}
+              slide={slide}
+              isActive={index === currentSlide}
+              onCtaClick={() => handleCtaClick(slide)}
+              onImageClick={() => handleImageClick(slide)}
+            />
+          ))}
+        </div>
+
+        <NavButton
+          onClick={prevSlide}
+          direction="left"
+          ariaLabel="Previous slide"
+        />
+        <NavButton
+          onClick={nextSlide}
+          direction="right"
+          ariaLabel="Next slide"
+        />
+        <DotIndicator
+          total={slides.length}
+          current={currentSlide}
+          onSelect={goToSlide}
+        />
       </div>
 
-      <NavButton
-        onClick={prevSlide}
-        direction="left"
-        ariaLabel="Previous slide"
-      />
-      <NavButton onClick={nextSlide} direction="right" ariaLabel="Next slide" />
-      <DotIndicator
-        total={slides.length}
-        current={currentSlide}
-        onSelect={goToSlide}
-      />
-    </div>
+      {/* Product Modal */}
+      {fullProduct && (
+        <ProductModal
+          shoe={fullProduct}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
+    </>
   );
 }

@@ -1,37 +1,37 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Landing pages
-import Landing from './landing/pages/landing'
-import AboutUs from './landing/pages/aboutUs'
-import SearchResult from './landing/pages/searchResult'
-import NotFound from './landing/pages/notFound'
+import Landing from "./landing/pages/landing";
+import AboutUs from "./landing/pages/aboutUs";
+import SearchResult from "./landing/pages/searchResult";
+import NotFound from "./landing/pages/notFound";
 
 // Client pages
-import Home from './client/pages/home'
-import Cart from './client/pages/cart'
-import Checkout from './client/pages/checkout'
-import OrderConfirmation from './client/pages/orderConfirmation'
-import OrderHistory from './client/pages/orderHistory'
-import ProductDetails from './client/pages/productDetails'
-import ProductListing from './client/pages/productListing'
-import UserAccount from './client/pages/userAccount'
+import Home from "./client/pages/home";
+import Cart from "./client/pages/cart";
+import Checkout from "./client/pages/checkout";
+import OrderConfirmation from "./client/pages/orderConfirmation";
+import OrderHistory from "./client/pages/orderHistory";
+import ProductDetails from "./client/pages/productDetails";
+import ProductListing from "./client/pages/productListing";
+import UserAccount from "./client/pages/userAccount";
 
 // Auth pages
-import Login from './auth/pages/login'
-import Register from './auth/pages/register'
-import ForgotPassword from './auth/pages/forgotPassoword'
-import NewPassword from './auth/pages/newPassword'
-import AdminLogin from './auth/pages/adminLogin'
+import Login from "./auth/pages/login";
+import Register from "./auth/pages/register";
+import ForgotPassword from "./auth/pages/forgotPassoword";
+import NewPassword from "./auth/pages/newPassword";
+import AdminLogin from "./auth/pages/adminLogin";
 
 // Admin pages
-import AdminDashboard from './admin/pages/adminDashboard'
-import ProductManagement from './admin/pages/productManagement'
-import CategoryManagement from './admin/pages/categoryManagement'
-import OrderManagement from './admin/pages/orderManagement'
-import ReviewManagement from './admin/pages/reviewManagement'
-import SalesManagement from './admin/pages/salesManagement'
-import Settings from './admin/pages/Settings'
-import UserManagement from './admin/pages/userManagement'
+import AdminDashboard from "./admin/pages/adminDashboard";
+import ProductManagement from "./admin/pages/productManagement";
+import CategoryManagement from "./admin/pages/categoryManagement";
+import OrderManagement from "./admin/pages/orderManagement";
+import ReviewManagement from "./admin/pages/reviewManagement";
+import SalesManagement from "./admin/pages/salesManagement";
+import Settings from "./admin/pages/Settings";
+import UserManagement from "./admin/pages/userManagement";
 
 export default function App() {
   return (
@@ -73,5 +73,5 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }

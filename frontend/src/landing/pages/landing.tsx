@@ -5,6 +5,7 @@ import shoes from "../../aaSampleData/shoe.json";
 import Brand from "../components/brand";
 import InformationContainer from "../components/informationContainer";
 import Filter from "../components/filterButton";
+import Footer from "../components/footer";
 
 export default function Landing() {
   return (
@@ -57,8 +58,8 @@ export default function Landing() {
         </section>
 
         {/* Footer */}
-        <section className="w-full bg-[#ebe1e1] text-[#111111] flex items-center justify-center px-4 py-2 box-border">
-          Footer
+        <section className="w-full bg-[#ebe1e1] text-[#111111] box-border">
+          <Footer />
         </section>
       </div>
     </main>
