@@ -39,24 +39,8 @@ const staticSlides: Slide[] = [
   },
 ];
 
-// SERVICE LAYER - The ONLY file you'll change when switching to dynamic
-// This pattern makes the switch seamless
 async function getSlides(): Promise<Slide[]> {
-  // CURRENT: Return static data
   return staticSlides;
-
-  // FUTURE: Uncomment this when ready for dynamic
-  /*
-  try {
-    const response = await fetch('/api/carousel/slides');
-    if (!response.ok) throw new Error('Failed to fetch');
-    const data = await response.json();
-    return data.slides;
-  } catch (error) {
-    console.error('Error fetching slides:', error);
-    return staticSlides; // Fallback to static data
-  }
-  */
 }
 
 const NavButton = ({
@@ -70,7 +54,7 @@ const NavButton = ({
 }) => (
   <button
     onClick={onClick}
-    className={`absolute ${direction === "left" ? "left-3 sm:left-4" : "right-3 sm:right-4"} top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 rounded-full transition-colors`}
+    className={`absolute ${direction === "left" ? "left-3 sm:left-4" : "right-3 sm:right-4"} top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-orange-500 text-gray-800 hover:text-white p-2 rounded-full transition-all duration-200 backdrop-blur-sm shadow-md hover:shadow-lg`}
     aria-label={ariaLabel}
   >
     <svg
@@ -103,10 +87,10 @@ const DotIndicator = ({
       <button
         key={index}
         onClick={() => onSelect(index)}
-        className={`w-2 h-2 rounded-full transition-all ${
+        className={`w-2 h-2 rounded-full transition-all duration-200 ${
           index === current
-            ? "bg-[#F97316] w-6"
-            : "bg-white/50 hover:bg-white/80"
+            ? "bg-orange-500 w-6"
+            : "bg-white/60 hover:bg-orange-300"
         }`}
         aria-label={`Go to slide ${index + 1}`}
       />
@@ -131,18 +115,18 @@ const SlideContent = ({
       alt={slide.title}
       className="w-full h-full object-cover"
     />
-    <div className="absolute inset-0 bg-black/40" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
     <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-      <p className="text-sm sm:text-base md:text-lg tracking-wider mb-2">
+      <p className="text-sm sm:text-base md:text-lg tracking-wider mb-2 uppercase">
         {slide.subtitle}
       </p>
       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
         {slide.title}
       </h1>
-      <p className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 text-[#F97316]">
+      <p className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-6 text-orange-400">
         {slide.discount}
       </p>
-      <button className="px-6 py-2 sm:px-8 sm:py-3 bg-white text-[#111111] font-semibold rounded-lg hover:bg-gray-200 transition-all duration-300">
+      <button className="px-6 py-2 sm:px-8 sm:py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-all duration-200 shadow-md hover:shadow-lg">
         {slide.cta}
       </button>
     </div>
@@ -155,7 +139,6 @@ export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
 
-  // Fetch slides on component mount
   useEffect(() => {
     getSlides().then((data) => {
       setSlides(data);
@@ -182,10 +165,9 @@ export default function Carousel() {
   const handleMouseEnter = () => setIsAutoPlaying(false);
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
-  // Loading state
   if (loading) {
     return (
-      <div className="relative w-full overflow-hidden rounded-2xl shadow-xl bg-gray-200">
+      <div className="relative w-full overflow-hidden rounded-xl border border-gray-200 shadow-[0_5px_15px_rgba(0,0,0,0.20)] bg-gray-200">
         <div className="h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px] flex items-center justify-center">
           <div className="text-gray-500">Loading carousel...</div>
         </div>
@@ -193,14 +175,13 @@ export default function Carousel() {
     );
   }
 
-  // No slides state
   if (slides.length === 0) {
     return null;
   }
 
   return (
     <div
-      className="relative w-full overflow-hidden rounded-2xl shadow-xl"
+      className="relative w-full overflow-hidden rounded-xl border border-gray-200 shadow-[0_5px_15px_rgba(0,0,0,0.20)] transition-all duration-200 hover:shadow-[0_12px_35px_rgba(249,115,22,0.4),0_4px_10px_rgba(0,0,0,0.08)]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

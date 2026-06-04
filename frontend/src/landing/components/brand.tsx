@@ -23,23 +23,8 @@ const staticBrands: Brand[] = [
   { name: "Skechers", logo: "S" },
 ];
 
-// SERVICE LAYER - The ONLY file/function you'll change when switching to dynamic
 async function getBrands(): Promise<Brand[]> {
-  // CURRENT: Return static data
   return staticBrands;
-
-  // FUTURE: Uncomment this when ready for dynamic
-  /*
-  try {
-    const response = await fetch('/api/brands');
-    if (!response.ok) throw new Error('Failed to fetch brands');
-    const data = await response.json();
-    return data.brands;
-  } catch (error) {
-    console.error('Error fetching brands:', error);
-    return staticBrands; // Fallback to static data
-  }
-  */
 }
 
 export default function Brand() {
@@ -53,7 +38,7 @@ export default function Brand() {
     });
   }, []);
 
-  // Loading state
+  // Loading state with skeleton (matching ShoeCard style)
   if (loading) {
     return (
       <section className="bg-gray-50 py-16 w-full">
@@ -65,7 +50,7 @@ export default function Brand() {
             {[...Array(12)].map((_, i) => (
               <div
                 key={i}
-                className="bg-white rounded-lg shadow-md p-8 animate-pulse"
+                className="bg-white rounded-xl border border-gray-200 shadow-[0_5px_15px_rgba(0,0,0,0.20)] p-8 animate-pulse"
               >
                 <div className="h-12 w-12 bg-gray-200 rounded-full mx-auto mb-2"></div>
                 <div className="h-4 bg-gray-200 rounded w-16 mx-auto"></div>
@@ -85,13 +70,15 @@ export default function Brand() {
           {brands.map((brand) => (
             <div
               key={brand.name}
-              className="bg-white rounded-lg shadow-md p-8 flex items-center justify-center hover:shadow-lg transition-shadow cursor-pointer"
+              className="bg-white rounded-xl border border-gray-200 shadow-[0_5px_15px_rgba(0,0,0,0.20)] p-8 flex items-center justify-center cursor-pointer transition-all duration-200 hover:border-orange-200 hover:shadow-[0_12px_35px_rgba(249,115,22,0.4),0_4px_10px_rgba(0,0,0,0.08)] group"
             >
               <div className="text-center">
-                <div className="text-4xl font-bold text-gray-800 mb-2">
+                <div className="text-4xl font-bold text-gray-800 mb-2 group-hover:text-orange-500 transition-colors duration-200">
                   {brand.logo}
                 </div>
-                <p className="text-sm text-gray-600">{brand.name}</p>
+                <p className="text-sm text-gray-600 group-hover:text-orange-500 transition-colors duration-200">
+                  {brand.name}
+                </p>
               </div>
             </div>
           ))}
